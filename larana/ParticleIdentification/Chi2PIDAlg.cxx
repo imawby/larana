@@ -22,6 +22,8 @@
 #include "fhiclcpp/ParameterSet.h"
 #include "lardata/Utilities/GeometryUtilities.h"
 
+#include "cetlib/pow.h"
+
 //------------------------------------------------------------------------------
 pid::Chi2PIDAlg::Chi2PIDAlg(fhicl::ParameterSet const& pset)
 {
@@ -138,10 +140,10 @@ anab::ParticleID pid::Chi2PIDAlg::DoParticleID(
         errdedx *= trkdedx[i];
 
         double errdedx_square = errdedx * errdedx;
-        chi2pro += pow((trkdedx[i] - bincpro), 2) / (binepro * binepro + errdedx_square);
-        chi2ka += pow((trkdedx[i] - bincka), 2) / (bineka * bineka + errdedx_square);
-        chi2pi += pow((trkdedx[i] - bincpi), 2) / (binepi * binepi + errdedx_square);
-        chi2mu += pow((trkdedx[i] - bincmu), 2) / (binemu * binemu + errdedx_square);
+        chi2pro += cet::square(trkdedx[i] - bincpro) / (binepro * binepro + errdedx_square);
+        chi2ka += cet::square(trkdedx[i] - bincka) / (bineka * bineka + errdedx_square);
+        chi2pi += cet::square(trkdedx[i] - bincpi) / (binepi * binepi + errdedx_square);
+        chi2mu += cet::square(trkdedx[i] - bincmu) / (binemu * binemu + errdedx_square);
 
         //std::cout<<i<<" "<<trkdedx[i]<<" "<<trkres[i]<<" "<<bincpro<<std::endl;
         ++npt;
