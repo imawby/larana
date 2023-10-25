@@ -93,8 +93,7 @@ void trk::TrackContainmentTagger::produce(art::Event& e)
     if (!fApplyTags[i_tc]) continue;
     for (size_t i_t = 0; i_t < fAlg.GetTrackCosmicTags()[i_tc].size(); ++i_t) {
       cosmicTagTrackVector->emplace_back(fAlg.GetTrackCosmicTags()[i_tc][i_t]);
-      util::CreateAssn(*this,
-                       e,
+      util::CreateAssn(e,
                        *cosmicTagTrackVector,
                        art::Ptr<recob::Track>(trackHandles[i_tc], i_t),
                        *assnOutCosmicTagTrack);
