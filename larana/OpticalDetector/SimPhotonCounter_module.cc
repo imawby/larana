@@ -698,7 +698,7 @@ namespace opdet {
                                          int nDirectPhotons,
                                          int nReflectedPhotons,
                                          double reflectedT0 /* = 0.0 */
-                                         ) const
+  ) const
   {
     phot::PhotonVisibilityService& pvs = *(art::ServiceHandle<phot::PhotonVisibilityService>());
 
